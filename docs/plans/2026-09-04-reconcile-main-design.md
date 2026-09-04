@@ -6,7 +6,7 @@ Owner: Shane Bishop
 
 ## Goal
 
-The local `main` contains 43 commits that `git range-diff` identifies as patch-equivalent to commits already on `origin/main`. The remote also contains seven later commits. Four uncommitted file changes remain from deliberate March 30 CLI help-output cleanup; the Yarn `packageManager` metadata was added incidentally by tooling.
+The local `main` contains 43 commits that `git range-diff` identifies as patch-equivalent to commits already on `origin/main`. The remote also contains seven later commits. Four uncommitted files remained from March 30: three intentional CLI/test changes in `src/cli/index.ts`, `src/cli/router.ts`, and `test/cli.bootstrap.test.ts`, plus one incidental Yarn `packageManager` metadata change in `package.json`.
 
 Adopt the canonical remote history, retain the intended cleanup, and leave a clean, verified, synchronized `main`.
 
@@ -30,7 +30,7 @@ Adopt the canonical remote history, retain the intended cleanup, and leave a cle
 
 ## Validation Evidence Expectations
 
-- `npm run test -- test/cli.bootstrap.test.ts test/cli.index-json.test.ts` exits zero; the bootstrap suite verifies help content, including all absent development invocations, and the index JSON suite verifies help/version output is written directly to stdout without logger routing.
+- `npm run test -- test/cli.bootstrap.test.ts test/cli.index-json.test.ts` exits zero; the bootstrap suite verifies help content, including all absent development invocations, and the index JSON suite verifies help/version output is written directly to stdout without calling `logger.info`.
 - `npm run check:style` exits zero.
 - `npm run build` exits zero and creates the package output.
 - `git status --short --branch` reports a clean `main` synchronized with `origin/main` after push.
