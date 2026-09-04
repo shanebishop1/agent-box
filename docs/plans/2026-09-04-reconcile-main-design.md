@@ -30,7 +30,7 @@ Adopt the canonical remote history, retain the intended cleanup, and leave a cle
 
 ## Validation Evidence Expectations
 
-- `npm run test -- test/cli.bootstrap.test.ts` exits zero and verifies help/version output.
+- `npm run test -- test/cli.bootstrap.test.ts test/cli.index-json.test.ts` exits zero; the bootstrap suite verifies help content, including all absent development invocations, and the index JSON suite verifies help/version output is written directly to stdout without logger routing.
 - `npm run check:style` exits zero.
 - `npm run build` exits zero and creates the package output.
 - `git status --short --branch` reports a clean `main` synchronized with `origin/main` after push.
