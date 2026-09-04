@@ -12,7 +12,7 @@ Adopt the canonical remote history, retain the intended cleanup, and leave a cle
 
 ## Scope / Out of Scope
 
-- In scope: preserve the current local history in a safety branch; adopt `origin/main`; retain the plain help/version output and removal of development-only help; add three README badges; verify and push.
+- In scope: preserve the current local history in a safety branch; adopt `origin/main`; retain the plain help/version output and removal of development-only help; remove the README's Node.js badge, reorder its npm and CI badges, and replace its MIT badge image so exactly the requested three badges remain; verify and push.
 - Out of scope: changing behavior from remote commits, dependency upgrades, live E2B checks requiring credentials, and release publication.
 
 ## Dependencies and Constraints
@@ -25,7 +25,7 @@ Adopt the canonical remote history, retain the intended cleanup, and leave a cle
 
 1. Create a local safety branch at the existing `main` tip and reset `main` to `origin/main`, preserving all prior work and incorporating the seven remote-only commits.
 2. Reapply the three intentional CLI help-output changes. Do not restore the accidental Yarn `packageManager` entry.
-3. Add npm version, CI workflow, and MIT license badges below the README title.
+3. Update the existing README badge block: remove the Node.js badge, place npm before CI, and replace the MIT badge image, leaving exactly the requested npm version, CI workflow, and MIT license badges below the title.
 4. Run focused CLI tests, style checks, and the production build. Commit the intentional retained work and README update, then push directly to `main`.
 
 ## Validation Evidence Expectations
