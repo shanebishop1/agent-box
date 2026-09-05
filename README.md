@@ -6,6 +6,8 @@
 
 `ez-devbox` is a small CLI for running coding agents in disposable E2B sandboxes without rebuilding the same shell glue every time.
 
+![ez-devbox: create a sandbox, use OpenCode, and resume the session](docs/assets/ez-devbox-demo.gif)
+
 The closest alternative is usually a homegrown setup: create an E2B sandbox, clone the repo, copy auth files, run setup commands, start `tmux`, SSH in, launch OpenCode/Codex/Claude Code, remember the sandbox ID, and reattach later. This tool packages that workflow into repeatable commands and config.
 
 ## What This Is
