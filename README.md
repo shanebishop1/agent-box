@@ -18,6 +18,20 @@ The closest alternative is usually a homegrown setup: create an E2B sandbox, clo
 - A controlled way to pass selected env vars and sync local tool auth/config into the sandbox.
 - Optional tunnel setup for reaching local MCP servers, Docker containers, or other services from the sandbox.
 
+## Demo flow
+
+After the [Quick start](#quick-start), with Node.js 20+, an `E2B_API_KEY` in `.env`, and an `ez-devbox.config.toml` in the current directory:
+
+```bash
+npx ez-devbox@latest create --mode ssh-opencode --detach --json
+# Set SANDBOX_ID to the sandboxId from the create result.
+npx ez-devbox@latest resume
+npx ez-devbox@latest list --json
+npx ez-devbox@latest wipe --sandbox-id "$SANDBOX_ID"
+```
+
+Privacy: redact sandbox IDs, credentials, and private repository names before sharing output or recordings.
+
 ## Why Use It
 
 Use `ez-devbox` if your current workflow looks like `git worktree` + `tmux` + SSH + custom E2B scripts + copied config files, and you want that to be less manual.
@@ -46,6 +60,8 @@ It handles the repetitive parts:
 - `ssh-claude`: SSH into the sandbox and attach Claude Code inside a persistent `tmux` session.
 - `web`: start `opencode serve` and print the URL.
 - `ssh-shell`: SSH into an interactive shell inside a persistent `tmux` session.
+
+Web mode requires a nonempty `OPENCODE_SERVER_PASSWORD` when it starts a new public listener. See [the web mode guide](docs/modes-web.md) for reuse and recovery behavior.
 
 ## Install
 
@@ -76,7 +92,7 @@ npm install -g ez-devbox
 ez-devbox --help
 ```
 
-Use `ez-devbox` in portable instructions. The short `ezdb` binary is declared by the current package and will first be available on npm in the release after `0.5.5`; npm `0.5.5` exposes only `ez-devbox`. Once you install a version that includes it, `ezdb --help` is equivalent.
+The package exposes both `ez-devbox` and `ezdb` binaries. Use `ez-devbox` in portable instructions; after installation, `ezdb --help` is equivalent.
 
 ## Environment variables
 
@@ -97,7 +113,7 @@ Common optional vars:
 - `FIRECRAWL_API_URL`: used by your own tooling/workloads inside the sandbox (for example tunneled MCP/API endpoints).
 - `FIRECRAWL_API_KEY`: forwarded only if configured through `env.pass_through`.
 - `GITHUB_TOKEN` / `GH_TOKEN`: used for GitHub auth flows (especially when `[gh].enabled = true`).
-- `OPENCODE_SERVER_PASSWORD`: used for `web` mode auth.
+- `OPENCODE_SERVER_PASSWORD`: required before `web` mode starts a new public listener; an already-running listener is reused only when it responds with an authentication challenge.
 
 The npm package also ships `.env.example`. Do not commit `.env`; it contains local secrets.
 
@@ -247,3 +263,4 @@ See the [complete config reference](https://github.com/shanebishop1/ez-devbox/bl
 - Security reports: [SECURITY.md](https://github.com/shanebishop1/ez-devbox/blob/main/SECURITY.md)
 - Contributions: [CONTRIBUTING.md](https://github.com/shanebishop1/ez-devbox/blob/main/CONTRIBUTING.md)
 - Release notes: [CHANGELOG.md](https://github.com/shanebishop1/ez-devbox/blob/main/CHANGELOG.md)
+- [Portfolio and social copy](https://github.com/shanebishop1/ez-devbox/blob/main/docs/portfolio.md)
